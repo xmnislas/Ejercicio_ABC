@@ -1,1 +1,33 @@
-[{"id":2,"nombre":"Medicina","alumnos":[]},{"id":5,"nombre":"Software","alumnos":[]},{"id":6,"nombre":"Industrial","alumnos":[]}]
+[
+    {
+        "id": 2,
+        "nombre": "Enfermeria",
+        "alumnos": [
+            {
+                "id": 7,
+                "nombre": "Juan",
+                "carrera": "Enfermeria"
+            },
+            {
+                "id": 11,
+                "nombre": "Sofia",
+                "carrera": "Enfermeria"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "nombre": "Software",
+        "alumnos": []
+    },
+    {
+        "id": 6,
+        "nombre": "Industrial",
+        "alumnos": []
+    },
+    {
+        "id": 7,
+        "nombre": "Comunicacion",
+        "alumnos": []
+    }
+]

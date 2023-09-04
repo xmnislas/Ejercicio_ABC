@@ -64,7 +64,6 @@ function mostrarSubMenuEntidad(entidad) {
 }
 
 function mostrarListado(entidad) {
-    //instrucciones para mostrar el listado
     if (entidad == 'alumnos') {
         console.log('--Lista de alumnos--');
         for (const alumno of alumnos) {
@@ -122,15 +121,38 @@ function borrar(entidad, clase) {
 
 function cambiar(entidad, clase) {
     mostrarListado(entidad);
-    rl.question(`Ingrese el ID del ${entidad} que desea cambiar: `, id => {
-        //instrucciones para modificar el elemento a la lista (recuerda guardar los cambios en el json)
+    rl.question(`Ingrese el ID del ${entidad} que desea cambiar: `, idString => {
+        const id = parseInt(idString);
+        rl.question('Ingresa el nuevo nombre: ', nuevoNombre => {
+            if (entidad == 'alumnos') {
+                var indice = alumnos.findIndex(alumno => alumno.id === id);
+                alumnos[indice].nombre = nuevoNombre;
+                var jsonEntidad = JSON.stringify(alumnos);
+            } else {
+                var indice = carreras.findIndex(carrera => carrera.id === id);
+                carreras[indice].nombre = nuevoNombre;
+                var jsonEntidad = JSON.stringify(carreras);
+            }
+            guardarDatos(entidad, jsonEntidad);
+            seleccionarAccionEntidad(`${entidad}`);
+        });
     });
 }
 
-function asignarAlumnoACarrera() {
+function asignarAlumnoACarrera(entidad) {
     mostrarListado('alumnos');
     rl.question(`Ingrese el ID del alumno que desea asignar a una carrera: `, idAlumno => {
-        //instrucciones para asignar un alumno a una clase
+
+        rl.question('Ingrese el ID de la carrera a la que va asignar: ', idCarrera => {
+            var alumnoEncontrado = alumnos.find(alumno => alumno.id === parseInt(idAlumno));
+            var carreraEncontrada = carreras.find(carrera => carrera.id === parseInt(idCarrera));
+            alumnoEncontrado.carrera = carreraEncontrada.nombre;
+            carreraEncontrada.alumnos.push(alumnoEncontrado);
+
+            guardarDatos('alumnos', JSON.stringify(alumnos));
+            guardarDatos('carreras', JSON.stringify(carreras));
+            seleccionarAccionEntidad(`${entidad}`);
+        });
     });
 }
 
@@ -176,7 +198,7 @@ function seleccionarAccionEntidad(entidad) {
                 cambiar(entidad, entidad === 'alumnos' ? Alumno : Carrera);
                 break;
             case '5':
-                asignarAlumnoACarrera();
+                asignarAlumnoACarrera(entidad);
                 break;
             case '6':
                 seleccionarAccionPrincipal();

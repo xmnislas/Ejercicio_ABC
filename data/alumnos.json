@@ -1,1 +1,27 @@
-[{"id":3,"nombre":"Ximena","carrera":null},{"id":6,"nombre":"Emilio","carrera":null},{"id":7,"nombre":"Maria","carrera":null}]
+[
+    {
+        "id": 3,
+        "nombre": "Karla",
+        "carrera": null
+    },
+    {
+        "id": 7,
+        "nombre": "Juan",
+        "carrera": "Enfermeria"
+    },
+    {
+        "id": 8,
+        "nombre": "Diana",
+        "carrera": null
+    },
+    {
+        "id": 10,
+        "nombre": "Ximena",
+        "carrera": null
+    },
+    {
+        "id": 11,
+        "nombre": "Sofia",
+        "carrera": "Enfermeria"
+    }
+]
